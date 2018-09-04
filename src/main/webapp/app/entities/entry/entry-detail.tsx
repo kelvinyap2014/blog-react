@@ -39,7 +39,7 @@ export class EntryDetail extends React.Component<IEntryDetailProps> {
                 <Translate contentKey="blogApp.entry.content">Content</Translate>
               </span>
             </dt>
-            <dd>{entryEntity.content}</dd>
+            <dd dangerouslySetInnerHTML={{ __html: entryEntity.content }} />
             <dt>
               <span id="date">
                 <Translate contentKey="blogApp.entry.date">Date</Translate>

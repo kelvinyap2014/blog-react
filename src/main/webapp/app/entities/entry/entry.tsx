@@ -106,7 +106,7 @@ export class Entry extends React.Component<IEntryProps, IEntryState> {
                       </Button>
                     </td>
                     <td>{entry.title}</td>
-                    <td>{entry.content}</td>
+                    <td dangerouslySetInnerHTML={{ __html: entry.content }} />
                     <td>
                       <TextFormat type="date" value={entry.date} format={APP_DATE_FORMAT} />
                     </td>
