@@ -139,6 +139,7 @@ export class BlogUpdate extends React.Component<IBlogUpdateProps, IBlogUpdateSta
                   <Label for="user.login">
                     <Translate contentKey="blogApp.blog.user">User</Translate>
                   </Label>
+                  <AvInput id="blog-user" type="hidden" name="user.id" value={this.state.userId} />
                   <AvInput id="blog-user" type="select" className="form-control" name="user.login" onChange={this.userUpdate}>
                     <option value="" key="0" />
                     {users

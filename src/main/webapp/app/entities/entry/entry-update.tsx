@@ -201,6 +201,7 @@ export class EntryUpdate extends React.Component<IEntryUpdateProps, IEntryUpdate
                   <Label for="blog.name">
                     <Translate contentKey="blogApp.entry.blog">Blog</Translate>
                   </Label>
+                  <AvInput id="entry-blog" type="hidden" name="blog.id" value={this.state.blogId} />
                   <AvInput id="entry-blog" type="select" className="form-control" name="blog.name" onChange={this.blogUpdate}>
                     <option value="" key="0" />
                     {blogs
