@@ -3,6 +3,7 @@ package io.ky.ra.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import io.ky.ra.domain.Entry;
 import io.ky.ra.repository.EntryRepository;
+import io.ky.ra.security.SecurityUtils;
 import io.ky.ra.web.rest.errors.BadRequestAlertException;
 import io.ky.ra.web.rest.util.HeaderUtil;
 import io.ky.ra.web.rest.util.PaginationUtil;
@@ -93,12 +94,7 @@ public class EntryResource {
     @Timed
     public ResponseEntity<List<Entry>> getAllEntries(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Entries");
-        Page<Entry> page;
-        if (eagerload) {
-            page = entryRepository.findAllWithEagerRelationships(pageable);
-        } else {
-            page = entryRepository.findAll(pageable);
-        }
+        Page<Entry> page = entryRepository.findByBlogUserLoginOrderByDateDesc(SecurityUtils.getCurrentUserLogin(), pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, String.format("/api/entries?eagerload=%b", eagerload));
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
