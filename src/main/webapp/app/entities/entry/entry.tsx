@@ -73,7 +73,7 @@ export class Entry extends React.Component<IEntryProps, IEntryState> {
             <div key={`entity-${i}`}>
               <h2>{entry.title}</h2>
               <div>
-                Posted on <TextFormat type="date" value={entry.date} format={APP_DATE_FORMAT} /> by {entry.blog.user.login}
+                Posted on <TextFormat type="date" value={entry.date} format="MMM D, YYYY, h:mm:ss A" /> by {entry.blog.user.login}
               </div>
               <div dangerouslySetInnerHTML={{ __html: entry.content }} />
               <td className="text-right">
