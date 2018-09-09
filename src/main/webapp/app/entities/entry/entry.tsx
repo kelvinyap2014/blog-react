@@ -76,7 +76,7 @@ export class Entry extends React.Component<IEntryProps, IEntryState> {
                 Posted on <TextFormat type="date" value={entry.date} format="MMM D, YYYY, h:mm:ss A" /> by {entry.blog.user.login}
               </div>
               <div dangerouslySetInnerHTML={{ __html: entry.content }} />
-              <td className="text-right">
+              <div className="text-left">
                 <div className="btn-group flex-btn-group-container">
                   <Button tag={Link} to={`${match.url}/${entry.id}/edit`} color="primary" size="sm">
                     <FontAwesomeIcon icon="pencil-alt" />{' '}
@@ -91,7 +91,8 @@ export class Entry extends React.Component<IEntryProps, IEntryState> {
                     </span>
                   </Button>
                 </div>
-              </td>
+              </div>
+              <br />
             </div>
           ))}
         </div>
