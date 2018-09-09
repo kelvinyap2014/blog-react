@@ -1,4 +1,13 @@
-# blog
+# Simple Blog - ReactJS, Spring Boot 2.0, JPA, MariaDB, JHipster 5.1
+
+This sample application was inspired by [Matt Raible's JHipster Blog Demo](http://www.jhipster.tech/video-tutorial/).
+
+## Screenshot
+
+![](resources/doc/img/screenshot/blog-entry.png?raw=true)
+
+## Code generator
+
 This application was generated using JHipster 5.1.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.1.0](https://www.jhipster.tech/documentation-archive/v5.1.0).
 
 ## Development
