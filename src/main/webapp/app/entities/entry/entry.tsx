@@ -67,77 +67,33 @@ export class Entry extends React.Component<IEntryProps, IEntryState> {
             <Translate contentKey="blogApp.entry.home.createLabel">Create new Entry</Translate>
           </Link>
         </h2>
-        <div className="table-responsive">
-          <InfiniteScroll
-            pageStart={this.state.activePage}
-            loadMore={this.handleLoadMore}
-            hasMore={this.state.activePage < this.props.links.next}
-            loader={<div className="loader">Loading ...</div>}
-            threshold={0}
-            initialLoad={false}
-          >
-            <Table responsive>
-              <thead>
-                <tr>
-                  <th className="hand" onClick={this.sort('id')}>
-                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('title')}>
-                    <Translate contentKey="blogApp.entry.title">Title</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('content')}>
-                    <Translate contentKey="blogApp.entry.content">Content</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('date')}>
-                    <Translate contentKey="blogApp.entry.date">Date</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th>
-                    <Translate contentKey="blogApp.entry.blog">Blog</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                {entryList.map((entry, i) => (
-                  <tr key={`entity-${i}`}>
-                    <td>
-                      <Button tag={Link} to={`${match.url}/${entry.id}`} color="link" size="sm">
-                        {entry.id}
-                      </Button>
-                    </td>
-                    <td>{entry.title}</td>
-                    <td dangerouslySetInnerHTML={{ __html: entry.content }} />
-                    <td>
-                      <TextFormat type="date" value={entry.date} format={APP_DATE_FORMAT} />
-                    </td>
-                    <td>{entry.blog ? <Link to={`blog/${entry.blog.id}`}>{entry.blog.name}</Link> : ''}</td>
-                    <td className="text-right">
-                      <div className="btn-group flex-btn-group-container">
-                        <Button tag={Link} to={`${match.url}/${entry.id}`} color="info" size="sm">
-                          <FontAwesomeIcon icon="eye" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.view">View</Translate>
-                          </span>
-                        </Button>
-                        <Button tag={Link} to={`${match.url}/${entry.id}/edit`} color="primary" size="sm">
-                          <FontAwesomeIcon icon="pencil-alt" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.edit">Edit</Translate>
-                          </span>
-                        </Button>
-                        <Button tag={Link} to={`${match.url}/${entry.id}/delete`} color="danger" size="sm">
-                          <FontAwesomeIcon icon="trash" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.delete">Delete</Translate>
-                          </span>
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </InfiniteScroll>
+        <br />
+        <div>
+          {entryList.map((entry, i) => (
+            <div key={`entity-${i}`}>
+              <h2>{entry.title}</h2>
+              <div>
+                Posted on <TextFormat type="date" value={entry.date} format={APP_DATE_FORMAT} /> by {entry.blog.user.login}
+              </div>
+              <div dangerouslySetInnerHTML={{ __html: entry.content }} />
+              <td className="text-right">
+                <div className="btn-group flex-btn-group-container">
+                  <Button tag={Link} to={`${match.url}/${entry.id}/edit`} color="primary" size="sm">
+                    <FontAwesomeIcon icon="pencil-alt" />{' '}
+                    <span className="d-none d-md-inline">
+                      <Translate contentKey="entity.action.edit">Edit</Translate>
+                    </span>
+                  </Button>
+                  <Button tag={Link} to={`${match.url}/${entry.id}/delete`} color="danger" size="sm">
+                    <FontAwesomeIcon icon="trash" />{' '}
+                    <span className="d-none d-md-inline">
+                      <Translate contentKey="entity.action.delete">Delete</Translate>
+                    </span>
+                  </Button>
+                </div>
+              </td>
+            </div>
+          ))}
         </div>
       </div>
     );
